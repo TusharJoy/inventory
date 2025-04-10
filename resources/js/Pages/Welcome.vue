@@ -63,21 +63,21 @@ function handleImageError() {
                             class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex"
                         >
                             <template v-if="canLogin">
-                                <Link
-                                    v-if="$page.props.auth.user"
-                                    :href="route('dashboard')"
+                        <Link
+                            v-if="$page.props.auth.user"
+                            :href="route('dashboard')"
                                     class="text-sm text-gray-700 hover:text-gray-900"
                                     >Dashboard</Link
-                                >
-                                <template v-else>
-                                    <Link
-                                        :href="route('login')"
+                        >
+                        <template v-else>
+                            <Link
+                                :href="route('login')"
                                         class="text-sm text-gray-700 hover:text-gray-900"
                                         >Log in</Link
-                                    >
-                                    <Link
-                                        v-if="canRegister"
-                                        :href="route('register')"
+                            >
+                            <Link
+                                v-if="canRegister"
+                                :href="route('register')"
                                         class="ml-4 text-sm text-gray-700 hover:text-gray-900"
                                         >Register</Link
                                     >
@@ -135,8 +135,8 @@ function handleImageError() {
             <!-- Decorative blob -->
             <div
                 class="absolute top-0 right-0 -translate-y-12 translate-x-1/4 transform"
-            >
-                <div
+                            >
+                                <div
                     class="h-96 w-96 bg-gradient-to-br from-green-400 to-emerald-400 opacity-20 rounded-full blur-3xl"
                 ></div>
             </div>
@@ -178,23 +178,23 @@ function handleImageError() {
                     </div>
                 </div>
             </div>
-        </div>
+                                    </div>
 
         <!-- Feature Section with new color scheme -->
         <div class="py-16 bg-green-50">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="lg:text-center">
-                    <h2
+                                        <h2
                         class="text-base text-green-600 font-semibold tracking-wide uppercase"
-                    >
+                                        >
                         Features
-                    </h2>
+                                        </h2>
                     <p
                         class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl"
                     >
                         Complete Inventory Control
                     </p>
-                </div>
+                                </div>
 
                 <div class="mt-10">
                     <div
@@ -248,12 +248,12 @@ function handleImageError() {
                                     viewBox="0 0 24 24"
                                     stroke="currentColor"
                                 >
-                                    <path
+                                        <path
                                         stroke-linecap="round"
                                         stroke-linejoin="round"
                                         stroke-width="2"
                                         d="M13 10V3L4 14h7v7l9-11h-7z"
-                                    />
+                                        />
                                 </svg>
                             </div>
                             <div class="ml-16">
@@ -268,7 +268,7 @@ function handleImageError() {
                                     preservation.
                                 </p>
                             </div>
-                        </div>
+                            </div>
 
                         <!-- Feature 3 -->
                         <div
@@ -283,7 +283,7 @@ function handleImageError() {
                                     viewBox="0 0 24 24"
                                     stroke="currentColor"
                                 >
-                                    <path
+                                        <path
                                         stroke-linecap="round"
                                         stroke-linejoin="round"
                                         stroke-width="2"
@@ -302,7 +302,7 @@ function handleImageError() {
                                     from harvesting to transportation.
                                 </p>
                             </div>
-                        </div>
+                            </div>
 
                         <!-- Feature 4 -->
                         <div
@@ -317,12 +317,12 @@ function handleImageError() {
                                     viewBox="0 0 24 24"
                                     stroke="currentColor"
                                 >
-                                    <path
+                                        <path
                                         stroke-linecap="round"
                                         stroke-linejoin="round"
                                         stroke-width="2"
                                         d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
-                                    />
+                                        />
                                 </svg>
                             </div>
                             <div class="ml-16">

@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id('shipment_transport_id');
             $table->decimal('weight', 10, 2);
             $table->foreignId('shipment_id')->constrained('shipments', 'shipment_id')->onDelete('cascade');
-            $table->foreignId('vehicle_id')->constrained('transport_vehicles', 'vehicle_id')->onDelete('cascade');
+            $table->foreignId('vehicle_id')->constrained('transport_vehicles', 'id')->onDelete('cascade');
             $table->timestamps();
         });
     }

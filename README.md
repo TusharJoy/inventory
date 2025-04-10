@@ -989,3 +989,172 @@ graph TD
     M --> N[Flash Messages]
     N --> K
 ```
+
+## Docker Setup
+
+The application uses Docker for development and deployment. The setup includes three main services:
+
+1. **Backend (Laravel)**
+
+    - Runs on port 8000
+    - Handles API requests and server-side logic
+    - Uses PHP 8.2 with necessary extensions
+    - Includes Xdebug for debugging
+
+2. **Frontend (Vue.js + Vite)**
+
+    - Runs on port 5173
+    - Handles client-side rendering and UI
+    - Hot Module Replacement (HMR) enabled
+    - CORS configured for development
+
+3. **Database (MySQL)**
+    - Runs on port 3306
+    - Persistent storage using Docker volumes
+    - Pre-configured with initial schema
+
+### Prerequisites
+
+-   Docker and Docker Compose installed
+-   Git for version control
+-   Node.js and npm (for local development)
+
+### Getting Started
+
+1. Clone the repository:
+
+    ```bash
+    git clone <repository-url>
+    cd inventory
+    ```
+
+2. Copy environment files:
+
+    ```bash
+    cp .env.example .env
+    cp .env.example.frontend .env.frontend
+    ```
+
+3. Start the containers:
+
+    ```bash
+    docker compose up -d
+    ```
+
+4. Install dependencies:
+
+    ```bash
+    # Install PHP dependencies
+    docker compose exec app composer install
+
+    # Install JavaScript dependencies
+    docker compose exec frontend npm install
+    ```
+
+5. Generate application key:
+
+    ```bash
+    docker compose exec app php artisan key:generate
+    ```
+
+6. Run migrations:
+
+    ```bash
+    docker compose exec app php artisan migrate
+    ```
+
+7. Access the application:
+    - Frontend: http://localhost:5173
+    - Backend API: http://localhost:8000
+    - Database: localhost:3306
+
+### Development Workflow
+
+1. **Backend Development**
+
+    - PHP files are mounted from your local machine
+    - Changes are reflected immediately
+    - Use `docker compose exec app php artisan` for Laravel commands
+
+2. **Frontend Development**
+
+    - Vue files are mounted from your local machine
+    - HMR enabled for instant updates
+    - Use `docker compose exec frontend npm run dev` for Vite commands
+
+3. **Database Management**
+    - Access MySQL: `docker compose exec db mysql -u inventory_user -p`
+    - Run migrations: `docker compose exec app php artisan migrate`
+    - Seed data: `docker compose exec app php artisan db:seed`
+
+### Environment Variables
+
+1. **Backend (.env)**
+
+    ```
+    APP_ENV=local
+    APP_DEBUG=true
+    DB_CONNECTION=mysql
+    DB_HOST=db
+    DB_PORT=3306
+    DB_DATABASE=inventory
+    DB_USERNAME=inventory_user
+    DB_PASSWORD=secret
+    ```
+
+2. **Frontend (.env.frontend)**
+    ```
+    NODE_ENV=development
+    VITE_APP_URL=http://localhost:8000
+    HOST=0.0.0.0
+    PORT=5173
+    ```
+
+### Troubleshooting
+
+1. **Port Conflicts**
+
+    - Ensure ports 8000, 5173, and 3306 are available
+    - Check running containers: `docker ps`
+
+2. **Container Issues**
+
+    - Rebuild containers: `docker compose build`
+    - Restart services: `docker compose restart`
+    - View logs: `docker compose logs -f`
+
+3. **Database Problems**
+
+    - Reset database: `docker compose down -v && docker compose up -d`
+    - Check migrations: `docker compose exec app php artisan migrate:status`
+
+4. **CORS Issues**
+    - Verify CORS configuration in `config/cors.php`
+    - Check frontend environment variables
+    - Ensure correct ports are being used
+
+### Production Deployment
+
+1. Update environment variables:
+
+    ```bash
+    APP_ENV=production
+    APP_DEBUG=false
+    ```
+
+2. Build production assets:
+
+    ```bash
+    docker compose exec frontend npm run build
+    ```
+
+3. Optimize Laravel:
+
+    ```bash
+    docker compose exec app php artisan optimize
+    ```
+
+4. Set proper permissions:
+    ```bash
+    docker compose exec app chmod -R 775 storage bootstrap/cache
+    ```
